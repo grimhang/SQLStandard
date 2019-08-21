@@ -2,7 +2,7 @@
 
 
 # 1. 기본규칙
-#### a. 들여쓰기 크기는 4이며 공백4개 기본으로 한다.
+    a. 들여쓰기 크기는 4이며 공백4개 기본으로 한다.
     b. AND 와 OR는 항상 괄호로 명시적으로 표현
     c. 여러 문장이 하나의 배치 파일에 작성될때 꼭 1칸의 빈 공백 라이을 준다
     d. 애스터리스크(*) 는 쓰지 않는다. 항상 명시적으로 컬럼 리스트를 지정
@@ -14,12 +14,12 @@
     b. 예약어를 변수명으로 사용하지 않는다.
     c. 모든 sql은 ;(세미콜론)으로 구분
 
-## 2. 별칭
+# 3. 별칭
 항상 AS 를 지정
  별칭은 단어들의 첫째 글짜로
    예) PRODUCT_BUY_CUSTOMER  ⇒ PBC
 
-## 3. 주석
+# 4. 주석
 #### a. 한줄 주석
 -- 대시 두번이면 같은 줄의 이후의 내용은 주석처리됨
 
@@ -38,9 +38,9 @@ DATE         	Developer                    	Change
 ```
 
 
-## 4. SELECT
+# 5. SELECT
 
-## 5. UPDATE
+# 6. UPDATE
 기본 스타일은 다음과 같습니다.
 
 ```SQL
@@ -55,16 +55,16 @@ WHERE MEMBER_NO = 5
 #### b. SET절과 WHERE절에서 업데이트할 컬럼들은 다른줄에 배치
 
 
-## 6. INSERT
+# 7. INSERT
 
-## 7. DELETE
+# 8. DELETE
 
-## 에러처리
-- GOTO 논리를 사용하지 않는다
+# 9. 에러처리
+* GOTO 논리를 사용하지 않는다
 
-- null값 비교는 무조건 IS NULL 또는 IS NOT NULL 
+* null값 비교는 무조건 IS NULL 또는 IS NOT NULL 
 
-- 오류처리는 TRY CATCH 사용
+* 오류처리는 TRY CATCH 사용
 ```SQL
 BEGIN TRY
     TSQL 쿼리
@@ -74,7 +74,7 @@ BEGIN CATCH
 END CATCH
 '''
 
-## 10. 조인
+# 10. 조인
 조인은 ANSI 조인을 사용
 ```SQL
 SELECT PROD_NO
@@ -100,7 +100,7 @@ FROM CUST AS C
 	JOIN CUST_BUY_LIST AS CBL	ON 
 ```
 
-##피해야 할 점
+# 10. 피해야 할 점
 텍스트 형태의 데이터 타입 CHAR, NCHAR, VARCHAR, NVARCHAR 에는 항상 크기를 지정
 ```SQL
 /* Correct */
