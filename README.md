@@ -100,7 +100,7 @@ FROM CUST AS C
 	JOIN CUST_BUY_LIST AS CBL	ON 
 ```
 
-# 10. 피해야 할 점
+# 11. 피해야 할 점
 텍스트 형태의 데이터 타입 CHAR, NCHAR, VARCHAR, NVARCHAR 에는 항상 크기를 지정
 ```SQL
 /* Correct */
@@ -117,8 +117,8 @@ FROM CUST AS C
 ```
 
 
-## 권장
-#### A. 일부 로우만 가져오기
+# 12. 권장
+#### a. 일부 로우만 가져오기
 ```SQL
 SELECT의 결과셋을 제한할때 TOP을 사용
 SELECT TOP 5 PROJECT_NO, PROJECT_NAME
@@ -129,7 +129,7 @@ SELECT TOP 50 PERCENT PROJECT_NO, PROJECT_NAME
 FROM T_PROJECT
 ```
 
-#### B. 서브쿼리
+#### b. 서브쿼리
 ```SQL
 SELECT MEMBER_NO, MEMBER_ID
 FROM TB_MEMBER
@@ -150,11 +150,11 @@ WHERE M.MEMBER_GROUP_CODE NOT IN ('A')
 ```
 
 -- @@IDENTITY 사용 금지
-#### C. @@IDENTITY 사용 금지
+#### c. @@IDENTITY 사용 금지
 @@IDENTITY 대신 SCOPE_IDENTITY() 사용
 
 
-#### D. NOLOCK 힌트 사용 금지
+#### d. NOLOCK 힌트 사용 금지
 Azure SQL Database           : read commited snapshot isolation가 기본
 Azure SQL Datawarehouse : read uncommited가 default 
 
