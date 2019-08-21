@@ -40,7 +40,6 @@ DATE         	Developer                    	Change
 
 # 5. SELECT
 기본 스타일은 다음과 같습니다.
-> 
 ```sql
 SELECT MEMBER_NO, MEMBER_ID, MEMBER_NAME, BASIC_SYSTEM_NO, CREATE_DTM
 	, MEMBER_ID, MEMBER_NAME
@@ -92,6 +91,10 @@ WHERE MEMBER_NO = 5
 
 
 # 7. INSERT
+    컬럼 리스트를 항상 명시
+    나쁜 예 : INSERT INTO TABLE1 VALUES (1, getdate();
+    좋은 예 : INSERT INTO TABLE1 (NO, TODAY_DATE) VALUES (1, getdate();
+
 
 # 8. DELETE
 
@@ -155,8 +158,8 @@ FROM CUST AS C
 
 # 12. 권장
 #### a. 일부 로우만 가져오기
-```SQL
 SELECT의 결과셋을 제한할때 TOP을 사용
+```SQL
 SELECT TOP 5 PROJECT_NO, PROJECT_NAME
 FROM T_PROJECT
 
