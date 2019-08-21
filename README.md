@@ -49,25 +49,27 @@ WHERE MEMBER_GROUP_CODE = 'A'
     * SELECT, FROM, WHERE 절은 다음줄에 배치
     * SELECT절에 한줄의 컬럼 갯수는 5개까지만 하고 6개부터 줄바꿈
 
-    a. SELECT 절에는 가급적 사용자 정의 함수를 사용하지 않는다. 성능 이슈 존재.
-   해당 로직을 함수 밖으로 꺼낸다.
+    * a. SELECT 절에는 가급적 사용자 정의 함수를 사용하지 않는다. 성능 이슈 존재.
+    * 해당 로직을 함수 밖으로 꺼낸다.
 
-    b.  컬럼과 컬럼사이의 콤마 규칙은 다음과 같다
+    * b.  컬럼과 컬럼사이의 콤마 규칙은 다음과 같다
+    ```sql    
+    SELECT PROD_NO, CUST_NAME
+    SELECT PROD_NO
+        , CUST_NAME
+    ```
+
+    * c. SELECT, FROM, WHERE, GROUP BY 는 각각 다른 줄에
+
+
+    * d. WHERE 조건은 다른줄에
 ```sql    
-SELECT PROD_NO, CUST_NAME
-SELECT PROD_NO
-	, CUST_NAME
-```
-
-- SELECT, FROM, WHERE, GROUP BY 는 각각 다른 줄에
-
-
-- WHERE 조건은 다른줄에
 SELECT *
 FROM TABLE1
 WHERE PROD_NO = 1
 	AND CUST_NO = 55552
 	AND REGION = ‘서울’
+```
 
 - SELECT 구문의 가로길이는 컬럼 5개
 - 변수에 값 할당시 SET을 쓴다. 단 테이블에서 여러 값을 한꺼번에 변수에 넣을때만 SELECT
