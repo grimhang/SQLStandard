@@ -1,13 +1,44 @@
-# Micorsoft SQL Server Coding Standard
-Microsoft SQL Server SQL Code Standard
+# Micorsoft SQL Server Coding Standard (작성중)
+
 
 ## 0. 기본규칙
+#### a. 들여쓰기 크기는 4이며 공백4개 기본으로 한다.
+#### b. AND 와 OR는 항상 괄호로 명시적으로 표현
+#### c. 여러 문장이 하나의 배치 파일에 작성될때 꼭 1칸의 빈 공백 라이을 준다
+#### d. 애스터리스크(*) 는 쓰지 않는다. 항상 명시적으로 컬럼 리스트를 지정
+#### e. MARS(쿼리 1개로 resultset(데이터셋) 을 여러개 받는것) 는 쓰지 않는다.
+#### f. 되도록 힌트를 쓰지 않는다. (최근에는 DBMS가 예전보다 똑똑해져서 일반적으로 사람보다 대부분 낫다)
 
 ## 1. 키워드
+#### a. 모든 SQL 키워드는 대문자 SELECT, FROM, WHERE, INSERT  
+
+#### b. 예약어를 변수명으로 사용하지 않는다.
+
+#### c. 모든 sql은 ;(세미콜론)으로 구분
 
 ## 2. 별칭
+항상 AS 를 지정
+ 별칭은 단어들의 첫째 글짜로
+   예) PRODUCT_BUY_CUSTOMER  ⇒ PBC
 
 ## 3. 주석
+#### a. 한줄 주석
+-- 대시 두번이면 같은 줄의 이후의 내용은 주석처리됨
+
+#### b. 복수줄 주석
+대량의 내용을 주석으로 하고 싶을때
+```sql
+/**************************************************************
+-- Author 	: 박성출
+-- Create date: 2012-09-08
+-- Description: 초기 작성
+ 
+DATE         	Developer                    	Change
+----------   	---------------- -------------------------------
+2012-09-08  박성출         	   처음 작성
+**************************************************************/
+```
+
 
 ## 4. SELECT
 
@@ -46,6 +77,30 @@ END CATCH
 '''
 
 ## 10. 조인
+조인은 ANSI 조인을 사용
+```SQL
+SELECT PROD_NO
+FROM TABLE1 AS T1
+    JOIN TABLE2 AS T2         	ON T1.TNO = T2.TNO
+    JOIN CUST_BUY_LIST AS CBL 	ON T2.CUST_NO = CBL.CUST_NO
+```
+
+#### a. INNER JOIN 은 INNER를 생략한 JOIN
+#### b. LEFT OUTER JOIN, RIGHT OUTER JOIN  ⇒ LEFT JOIN, RIGHT JOIN, FULL JOIN
+#### c. ON 절은 탭으로 1번
+#### d. JOIN은 1탭 들여쓰기한다.
+```SQL
+SELECT PROD_NO
+FROM TABLE1 AS T1
+	JOIN TABLE2 AS T2		ON T1.TNO = T2.TNO
+```
+
+#### e.  여러 테이블 조인시 항상 최상위 테이블부터
+```SQL
+SELECT C.NAME
+FROM CUST AS C
+	JOIN CUST_BUY_LIST AS CBL	ON 
+```
 
 ##피해야 할 점
 텍스트 형태의 데이터 타입 CHAR, NCHAR, VARCHAR, NVARCHAR 에는 항상 크기를 지정
