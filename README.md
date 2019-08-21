@@ -51,17 +51,17 @@ WHERE MEMBER_GROUP_CODE = 'A'
 
 5.1 SELECT 절에는 가급적 사용자 정의 함수를 사용하지 않는다. 성능 이슈 존재.  
 5.2 해당 로직을 함수 밖으로 꺼낸다.  
-5.3  컬럼과 컬럼사이의 콤마 규칙은 다음과 같다
-    ```sql    
+5.3  컬럼과 컬럼사이의 콤마 규칙은 다음과 같다   
+```sql    
     SELECT PROD_NO, CUST_NAME
     SELECT PROD_NO
         , CUST_NAME
-    ```
+```
 
-    * c. SELECT, FROM, WHERE, GROUP BY 는 각각 다른 줄에
+5.4 SELECT, FROM, WHERE, GROUP BY 는 각각 다른 줄에  
 
 
-    * d. WHERE 조건은 다른줄에
+5.5 WHERE 조건은 다른줄에
 ```sql    
 SELECT *
 FROM TABLE1
