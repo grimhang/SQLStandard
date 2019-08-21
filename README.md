@@ -1,4 +1,4 @@
-# Micorsoft SQL Server Coding Standard (작성중)
+# Micorsoft SQL Server Coding Standard for CHUBB (작성중)
 
 
 # 1. 기본규칙
@@ -72,7 +72,7 @@ END TRY
 BEGIN CATCH
     에러처리
 END CATCH
-'''
+```
 
 # 10. 조인
 조인은 ANSI 조인을 사용
