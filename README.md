@@ -30,6 +30,14 @@ function func() {
 }
 ```
 
+```SQL
+UPDATE T MEMBER
+SET MEMBER_NAME = '홍길동'
+    MEMBER_GROUP_CODE = 'C'
+WHERE MEMBER_NO = 5
+    AND MEMBER_GROUP_CODE = 'A'
+```
+
 #### a. UPDATE, SET, WHERE 는 다른줄에 배치
 #### b. SET절과 WHERE절에서 업데이트할 컬럼들은 다른줄에 배치
 
