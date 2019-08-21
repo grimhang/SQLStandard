@@ -157,7 +157,7 @@ FROM CUST AS C
 
 
 # 12. 권장
-#### a. 일부 로우만 가져오기
+### 12.1 일부 로우만 가져오기
 SELECT의 결과셋을 제한할때 TOP을 사용
 ```SQL
 SELECT TOP 5 PROJECT_NO, PROJECT_NAME
