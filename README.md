@@ -46,8 +46,8 @@ SELECT MEMBER_NO, MEMBER_ID, MEMBER_NAME, BASIC_SYSTEM_NO, CREATE_DTM
 FROM TB_MEMBER
 WHERE MEMBER_GROUP_CODE = 'A'
 ```
-> SELECT, FROM, WHERE 절은 다음줄에 배치  
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SELECT절에 한줄의 컬럼 갯수는 5개까지만 하고 6개부터 줄바꿈  
+> SELECT, FROM, WHERE 절은 다음줄에 배치
+> SELECT절에 한줄의 컬럼 갯수는 5개까지만 하고 6개부터 줄바꿈  
 
 &nbsp;&nbsp;&nbsp;&nbsp;5.1 SELECT 절에는 가급적 사용자 정의 함수를 사용하지 않는다. 성능 이슈 존재.  
 &nbsp;&nbsp;&nbsp;&nbsp;5.2 해당 로직을 함수 밖으로 꺼낸다.  
