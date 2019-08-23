@@ -252,7 +252,7 @@ FROM TABLE1 AS T1
 
 
 * #### 12.5 데이터 존재 파악
-  데이터 존재 여부 파악을 위해 COUNT(*) 또는 SELECT * FROM 을 사용하는 대신 EXSITS/TOP 구문 사용
+  데이터 존재 여부 파악을 위해 COUNT(*) 또는 SELECT * FROM 을 사용하는 대신 EXSITS/TOP 구문 사용.  
   또한 IN, NOT IN 대신에 가능하면 EXISTS, NOT EXISTS를 사용
 ```sql
     -- 예제 1. 첫번째 한건만 확인
