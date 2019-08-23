@@ -276,7 +276,7 @@ FROM TABLE1 AS T1
 
  * #### 12.7 VARCHAR와 NVARCHAR 데이터 타입간 조인 금지
    VARCHAR쪽 테이블의 모든 로우를 NVARCHAR로 먼저 암시적으로 변환 한다음 조인을 하기 때문에  
-   엄청난 성능 저하가 발생
+   엄청난 성능 저하가 발생  
     > JAVA쪽은 이와 관련되어 기본적으로 쿼리가 UNICODE로 입력되기에 VARCHAR로 테이블을
     > 만들었을 경우 암시적 변환때문에 성능 저하 발생.
     > 예방책으로 JDBC 드라이버의 sendStringParametersAsUnicode 값을 false로 하는 방법도 존재
