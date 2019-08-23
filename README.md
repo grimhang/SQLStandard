@@ -1,6 +1,11 @@
 # Micorsoft SQL Server SQL Coding Standard for CHUBB
 
 ***
+## 0. SSMS 사용. 쿼리 작성 클라이언트 툴
+  MS에서 만들고 배포하는 SSMS(SQL Server Management Studio)를 사용하며   
+  노트부을 지급받을 때 자동으로 깔려있다.  
+  만약 설치가 안되어 있을 경우 파일서버의 다음 위치에서 설치본을 찾을수 있다.
+    파일서버\설치파일\SSMS_Setup_KOR.exe 를 
 
 ## 1. 기본규칙
 * a. 들여쓰기 크기는 4이며 공백4개 기본으로 한다.
