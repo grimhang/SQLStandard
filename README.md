@@ -48,8 +48,8 @@ SELECT MEMBER_NO, MEMBER_ID, MEMBER_NAME, BASIC_SYSTEM_NO, CREATE_DTM
 FROM TB_MEMBER
 WHERE MEMBER_GROUP_CODE = 'A'
 ```
-* SELECT, FROM, WHERE 절은 다음줄에 배치  
-* SELECT절에 한줄의 컬럼 갯수는 5개까지만 하고 6개부터 줄바꿈  
+  SELECT, FROM, WHERE 절은 다음줄에 배치     
+  SELECT절에 한줄의 컬럼 갯수는 5개까지만 하고 6개부터 줄바꿈  
 
 * #### 5.1 SELECT 절의 사용자 정의 함수
     * SELECT에는 가급적 사용자 정의 함수를 사용하지 않는다. 성능 이슈 존재.  
@@ -158,7 +158,7 @@ FROM TABLE1 AS T1
 
 * #### a. INNER JOIN 은 INNER를 생략
 * #### b. LEFT OUTER JOIN, RIGHT OUTER JOIN은 OUTER를 생략  ⇒ LEFT JOIN, RIGHT JOIN, FULL JOIN
-* #### c. ON 절은 탭으로 1번
+* #### c. 조인의 ON 절은 탭으로 1번 들여쓰기
 * #### d. JOIN은 1탭 들여쓰기한다.
 
 ```SQL
@@ -178,13 +178,13 @@ FROM TABLE1 AS T1
 ## 11. 피해야 할 점
 텍스트 형태의 데이터 타입 CHAR, NCHAR, VARCHAR, NVARCHAR 에는 항상 크기를 지정
 ```SQL
-/* Correct */
+/* 권장 */
  DECLARE @myGoodVarchareVariable  VARCHAR(50);
  DECLARE @myGoodNVarchareVariable NVARCHAR(90);
  DECLARE @myGoodCharVariable      CHAR(7);
  DECLARE @myGoodNCharVariable     NCHAR(10);
  
- /* Not correct */
+ /* 비권장 */
  DECLARE @myBadVarcharVariable  VARCHAR;
  DECLARE @myBadNVarcharVariable NVARCHAR;
  DECLARE @myBadCharVariable     CHAR;
@@ -194,7 +194,7 @@ FROM TABLE1 AS T1
 
 ## 12. 권장
 * #### 12.1 일부 로우만 가져오기
-SELECT의 결과셋을 제한할때 TOP을 사용
+ SELECT의 결과셋을 제한할때 TOP을 사용
 ```SQL
 SELECT TOP 5 PROJECT_NO, PROJECT_NAME        -- 상위 5개만 가져오는다
 FROM T_PROJECT;
