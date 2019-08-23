@@ -209,7 +209,7 @@ FROM TABLE1 AS T1
 
 
 ## 12. 권장
-* #### 12.1 한줄 주석
+* #### 12.1 TOP으로 결과 제한
   SELECT의 결과셋을 제한할때 TOP을 사용  
 ```SQL
     SELECT TOP 5 PROJECT_NO, PROJECT_NAME        -- 상위 5개만 가져오는다
@@ -262,4 +262,13 @@ FROM TABLE1 AS T1
 
     -- 나쁜 예.
     IF (SELECT COUNT(*) FROM DBO.TB_CUSTID WHERE CUSTNAME LIKE ‘박%’)) -- 전체 ROW 를 모두 COUNT
+ ```
+
+ * #### 12.6 페이징은 OFFSET FETCH 를 사용
+ ```sql
+    SELECT PRODUCT_NAME, LIST_PRICE 
+    FROM PRODUCT
+    ORDER BY LIST_PRICE, PRODUCT_NAME
+    OFFSET 10 ROWS 
+    FETCH NEXT 10 ROWS ONLY;
  ```
