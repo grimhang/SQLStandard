@@ -196,31 +196,31 @@ FROM TABLE1 AS T1
 * #### 12.1 일부 로우만 가져오기
  SELECT의 결과셋을 제한할때 TOP을 사용
 ```SQL
-SELECT TOP 5 PROJECT_NO, PROJECT_NAME        -- 상위 5개만 가져오는다
-FROM T_PROJECT;
+    SELECT TOP 5 PROJECT_NO, PROJECT_NAME        -- 상위 5개만 가져오는다
+    FROM T_PROJECT;
 
-SELECT TOP 50 PERCENT PROJECT_NO, PROJECT_NAME  -- 결과중 상위 50%만 가져오기
-FROM T_PROJECT;
+    SELECT TOP 50 PERCENT PROJECT_NO, PROJECT_NAME  -- 결과중 상위 50%만 가져오기
+    FROM T_PROJECT;
 ```
 
 * #### 12.2 서브쿼리
 ```SQL
-SELECT MEMBER_NO, MEMBER_ID
-FROM TB_MEMBER
-WHERE MEMBER_NO = (SELECT TOP 1 MEMBER_NO
-                                         FROM TB_MEMBER
-                                         WHERE MEMBER_GROUP_CODE = 'A')
+    SELECT MEMBER_NO, MEMBER_ID
+    FROM TB_MEMBER
+    WHERE MEMBER_NO = (SELECT TOP 1 MEMBER_NO
+                                            FROM TB_MEMBER
+                                            WHERE MEMBER_GROUP_CODE = 'A')
 
 
-SELECT M.MEMBER_NO, M.MEMBER_ID, M.MEMBER_NAME
-FROM TB_MEMBER M
-    JOIN
-    (
-        SELECT MEMBER_NO, MEMBER_NAME, MEMBER_GROUP_CODE
-        FROM TB_MEMBER
-        WHERE MEMBER_GROUP_CODE = 'A'
-    ) A    ON M.MEMBER_NO = A.MEMBER_NO
-WHERE M.MEMBER_GROUP_CODE NOT IN ('A')
+    SELECT M.MEMBER_NO, M.MEMBER_ID, M.MEMBER_NAME
+    FROM TB_MEMBER M
+        JOIN
+        (
+            SELECT MEMBER_NO, MEMBER_NAME, MEMBER_GROUP_CODE
+            FROM TB_MEMBER
+            WHERE MEMBER_GROUP_CODE = 'A'
+        ) A    ON M.MEMBER_NO = A.MEMBER_NO
+    WHERE M.MEMBER_GROUP_CODE NOT IN ('A')
 ```
 
 * #### 12.3 @@IDENTITY 사용 금지
