@@ -234,12 +234,15 @@ FROM TABLE1 AS T1
 ```
 
 * #### 12.3 @@IDENTITY 사용 금지
-  @@IDENTITY 대신 SCOPE_IDENTITY() 사용  
+  Azure DW는 시퀀스가 지원 안됨. identity를 써야 하는데 @@IDENTITY 대신 SCOPE_IDENTITY() 사용  
 
 * #### 12.4 NOLOCK 힌트 사용 금지
-    * Azure SQL Database          : read commited snapshot isolation가 기본. 오라클과 같은 MVCC라서 NOLOCK의미 없음
-    
-    * Azure SQL Datawarehouse     : read uncommited가 기본값. nolock과 같은 말
+    * Azure SQL Database          
+        * read commited snapshot isolation가 기본.
+        * 오라클과 같은 MVCC라서 NOLOCK의미 없음
+
+    * Azure SQL Datawarehouse
+        * read uncommited가 기본값. nolock과 같은 말
 
 
 * #### 12.5 데이터 존재 파악
