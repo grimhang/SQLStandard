@@ -239,11 +239,9 @@ WHERE M.MEMBER_GROUP_CODE NOT IN ('A')
     -- 예제 1. 첫번째 한건만 확인
     IF (EXISTS(SELECT 1 FROM DBO.TB_CUSTID WHERE CUSTNAME LIKE '박%'))
 
-
     -- 예제 2. 첫번째 한건의 컬럼만 확인
     IF (EXISTS(SELECT TOP 1 CUSTID FROM DBO.TB_CUSTID WHERE CUSTNAME LIKE '박%'))
- 
- 
+
     -- 나쁜 예.
     IF (SELECT COUNT(*) FROM DBO.TB_CUSTID WHERE CUSTNAME LIKE ‘박%’)) -- 전체 ROW 를 모두 COUNT
  ```
