@@ -228,22 +228,27 @@ WHERE M.MEMBER_GROUP_CODE NOT IN ('A')
 
 
 * #### 12.4 NOLOCK 힌트 사용 금지
-    * Azure SQL Database          : read commited snapshot isolation가 기본.
-    *                               오라클과 같은 MVCC라서 NOLOCK의미 없음
+    * Azure SQL Database          : read commited snapshot isolation가 기본. 오라클과 같은 MVCC라서 NOLOCK의미 없음
+    
     * Azure SQL Datawarehouse     : read uncommited가 default. nolock과 같은 말
 
 
 * #### 12.5 변수 파악
+```sql
 DECLARE @MEM_NAME VARCHAR(500)  = '박성출'       --  변수 선언
+```
 
-데이터 존재 파악
+* #### 12.6 데이터 존재 파악
 - 데이터 존재 여부 파악을 위해 COUNT(*) 또는 SELECT * FROM 을 사용하는 대신 EXSITS/TOP 구문 사용
--- 예제 1. 첫번째 한건만 확인
-IF (EXISTS(SELECT 1 FROM DBO.TB_CUSTID WHERE CUSTNAME LIKE '박%'))
+```sql
+    -- 예제 1. 첫번째 한건만 확인
+    IF (EXISTS(SELECT 1 FROM DBO.TB_CUSTID WHERE CUSTNAME LIKE '박%'))
+
+
+    -- 예제 2. 첫번째 한건의 컬럼만 확인
+    IF (EXISTS(SELECT TOP 1 CUSTID FROM DBO.TB_CUSTID WHERE CUSTNAME LIKE '박%'))
  
--- 예제 2. 첫번째 한건의 컬럼만 확인
-IF (EXISTS(SELECT TOP 1 CUSTID FROM DBO.TB_CUSTID WHERE CUSTNAME LIKE '박%'))
  
- 
--- 나쁜 예.
-IF (SELECT COUNT(*) FROM DBO.TB_CUSTID WHERE CUSTNAME LIKE ‘박%’)) -- 전체 ROW 를 모두 COUNT
+    -- 나쁜 예.
+    IF (SELECT COUNT(*) FROM DBO.TB_CUSTID WHERE CUSTNAME LIKE ‘박%’)) -- 전체 ROW 를 모두 COUNT
+ ```
