@@ -224,8 +224,7 @@ FROM TABLE1 AS T1
 ```
 
 * #### 12.3 @@IDENTITY 사용 금지
-* @@IDENTITY 대신 SCOPE_IDENTITY() 사용
-
+  @@IDENTITY 대신 SCOPE_IDENTITY() 사용  
 
 * #### 12.4 NOLOCK 힌트 사용 금지
     * Azure SQL Database          : read commited snapshot isolation가 기본. 오라클과 같은 MVCC라서 NOLOCK의미 없음
