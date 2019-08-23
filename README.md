@@ -203,7 +203,7 @@ SELECT TOP 50 PERCENT PROJECT_NO, PROJECT_NAME  -- 결과중 상위 50%만 가�
 FROM T_PROJECT;
 ```
 
-* #### 12.2 서브쿼리
+*#### 12.2 서브쿼리
 ```SQL
 SELECT MEMBER_NO, MEMBER_ID
 FROM TB_MEMBER
@@ -224,7 +224,7 @@ WHERE M.MEMBER_GROUP_CODE NOT IN ('A')
 ```
 
 * #### 12.3 @@IDENTITY 사용 금지
-@@IDENTITY 대신 SCOPE_IDENTITY() 사용
+* @@IDENTITY 대신 SCOPE_IDENTITY() 사용
 
 
 * #### 12.4 NOLOCK 힌트 사용 금지
@@ -233,12 +233,7 @@ WHERE M.MEMBER_GROUP_CODE NOT IN ('A')
     * Azure SQL Datawarehouse     : read uncommited가 default. nolock과 같은 말
 
 
-* #### 12.5 변수 파악
-```sql
-DECLARE @MEM_NAME VARCHAR(500)  = '박성출'       --  변수 선언
-```
-
-* #### 12.6 데이터 존재 파악
+* #### 12.5 데이터 존재 파악
 - 데이터 존재 여부 파악을 위해 COUNT(*) 또는 SELECT * FROM 을 사용하는 대신 EXSITS/TOP 구문 사용
 ```sql
     -- 예제 1. 첫번째 한건만 확인
