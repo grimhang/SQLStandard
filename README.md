@@ -195,6 +195,8 @@ FROM TABLE1 AS T1
 ## 12. 권장
 * #### 12.1 일부 로우만 가져오기
   SELECT의 결과셋을 제한할때 TOP을 사용
+* #### 4.1 한줄 주석
+  대시 두번이면 같은 줄의 이후의 내용은 주석처리됨  
 ```SQL
     SELECT TOP 5 PROJECT_NO, PROJECT_NAME        -- 상위 5개만 가져오는다
     FROM T_PROJECT;
