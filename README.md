@@ -1,4 +1,4 @@
-# Micorsoft SQL Server Coding Standard for CHUBB (작성중)
+# Micorsoft SQL Server SQL Coding Standard for CHUBB
 
 ***
 
