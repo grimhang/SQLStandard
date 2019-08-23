@@ -54,6 +54,17 @@ WHERE MEMBER_GROUP_CODE = 'A'
 * #### 5.1 SELECT 절의 사용자 정의 함수
     * SELECT에는 가급적 사용자 정의 함수를 사용하지 않는다. 성능 이슈 존재.  
     * 해당 로직을 함수 밖으로 꺼낸다.  
+```sql
+    -- 나쁜 예
+    SELECT MEMBER_NAME, dbo.FN_GET_AGE(MEMBER_NO) AS MEM_AGE
+    FROM TB_MEMBER
+    WHERE MEMBER_GROUP_CODE = 'A'
+
+    -- 좋은 예
+    SELECT MEMBER_NAME, 100 - SUBSTRING(JUMIN_NO AS, 2)  MEM_AGE
+    FROM TB_MEMBER
+    WHERE MEMBER_GROUP_CODE = 'A'
+```
 
 * #### 5.2  컬럼과 컬럼사이의 콤마 규칙 
 ```sql   
@@ -83,7 +94,7 @@ WHERE MEMBER_GROUP_CODE = 'A'
         , CUST_ALIAS_NAME
 ```        
 * #### 5.7 변수에 값 할당
-* SET을 이용해 변수에 값 할당. 단 테이블에서 데이터를 읽어와 값을 변수에 할당할 경우는 SELECT
+  SET을 이용해 변수에 값 할당. 단 테이블에서 데이터를 읽어와 값을 변수에 할당할 경우는 SELECT
 
 ```sql
     -- 권장방식
@@ -154,8 +165,7 @@ SELECT PROD_NO
 FROM TABLE1 AS T1
     JOIN TABLE2 AS T2         	ON T1.TNO = T2.TNO
     JOIN CUST_BUY_LIST AS CBL 	ON T2.CUST_NO = CBL.CUST_NO
-```
-
+```  
 * #### a. INNER JOIN 은 INNER를 생략
 * #### b. LEFT OUTER JOIN, RIGHT OUTER JOIN은 OUTER를 생략  ⇒ LEFT JOIN, RIGHT JOIN, FULL JOIN
 * #### c. 조인의 ON 절은 탭으로 1번 들여쓰기
@@ -229,7 +239,7 @@ FROM TABLE1 AS T1
 * #### 12.4 NOLOCK 힌트 사용 금지
     * Azure SQL Database          : read commited snapshot isolation가 기본. 오라클과 같은 MVCC라서 NOLOCK의미 없음
     
-    * Azure SQL Datawarehouse     : read uncommited가 default. nolock과 같은 말
+    * Azure SQL Datawarehouse     : read uncommited가 기본값. nolock과 같은 말
 
 
 * #### 12.5 데이터 존재 파악
