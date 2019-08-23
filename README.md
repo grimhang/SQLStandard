@@ -51,9 +51,11 @@ WHERE MEMBER_GROUP_CODE = 'A'
 * SELECT, FROM, WHERE 절은 다음줄에 배치  
 * SELECT절에 한줄의 컬럼 갯수는 5개까지만 하고 6개부터 줄바꿈  
 
-5.1 SELECT 절에는 가급적 사용자 정의 함수를 사용하지 않는다. 성능 이슈 존재.  
-    해당 로직을 함수 밖으로 꺼낸다.  
-5.2  컬럼과 컬럼사이의 콤마 규칙은 다음과 같다   
+* #### 5.1 SELECT 절의 사용자 정의 함수
+    * SELECT에는 가급적 사용자 정의 함수를 사용하지 않는다. 성능 이슈 존재.  
+    * 해당 로직을 함수 밖으로 꺼낸다.  
+
+* #### 5.2  컬럼과 컬럼사이의 콤마 규칙 
 ```sql   
     -- 한줄일때
     SELECT PROD_NO, CUST_NAME
@@ -63,24 +65,26 @@ WHERE MEMBER_GROUP_CODE = 'A'
         , CUST_NAME
 ```
 
-5.3 SELECT, FROM, WHERE, GROUP BY 는 각각 다른 줄에  
+* #### 5.3 SELECT, FROM, WHERE, GROUP BY 는 각각 다른 줄에  
 
 
-5.4 WHERE 조건은 다른줄에
+* #### 5.4 WHERE 조건은 다른줄에
 ```sql    
-SELECT *
-FROM TABLE1
-WHERE PROD_NO = 1
-	AND CUST_NO = 55552
-	AND REGION = ‘서울’
+    SELECT *
+    FROM TABLE1
+    WHERE PROD_NO = 1
+        AND CUST_NO = 55552
+        AND REGION = ‘서울’
 ```
 
-5.6 SELECT 구문의 가로길이는 컬럼 5개  
+* #### 5.6 SELECT 구문의 가로길이는 컬럼 5개  
 ```sql
     SELECT PROD_NO, CUST_NAME, CUST_NO, CUST_ADDR, CUST_TELNO
         , CUST_ALIAS_NAME
 ```        
-5.7 변수에 값 할당시 SET을 쓴다. 단 테이블에서 여러 값을 한꺼번에 변수에 넣을때만 SELECT
+* #### 5.7 변수에 값 할당
+* SET을 이용해 변수에 값 할당. 단 테이블에서 데이터를 읽어와 값을 변수에 할당할 경우는 SELECT
+
 ```sql
     -- 권장방식
     DECLARE @TEMP_NAME VARCHAR(50)
@@ -92,8 +96,7 @@ WHERE PROD_NO = 1
 
     -- 테이블에서 값을 변수에 할당할때만 SELECT 사용
     DECLARE @TEMP_NAME VARCHAR(50)
-
-    SELECT @TEMP_NAME = 
+    SELECT @TEMP_NAME = MEM_NAME
     FROM MEMBER
     WHERE CUST_NO = 5524
 ```       
@@ -110,18 +113,18 @@ WHERE MEMBER_NO = 5
     AND MEMBER_GROUP_CODE = 'A'
 ```
 
-#### a. UPDATE, SET, WHERE 는 다른줄에 배치
-#### b. SET절과 WHERE절에서 컬럼들 다른줄에 배치
+* #### a. UPDATE, SET, WHERE 는 다른줄에 배치
+* #### b. SET절과 WHERE절에서 컬럼들 다른줄에 배치
 
 
 ## 7. INSERT
     컬럼 리스트를 항상 명시
 ```SQL    
-    -- 나쁜 예
-    INSERT INTO TABLE1 VALUES (1, getdate();
-    
-    -- 좋은 예
-    INSERT INTO TABLE1 (NO, TODAY_DATE) VALUES (1, getdate());
+-- 나쁜 예
+INSERT INTO TABLE1 VALUES (1, getdate();
+
+-- 좋은 예
+INSERT INTO TABLE1 (NO, TODAY_DATE) VALUES (1, getdate());
 ```
 
 ## 8. DELETE
@@ -133,11 +136,14 @@ WHERE MEMBER_NO = 5
 
 * 오류처리는 TRY CATCH 사용
 ```SQL
+DECLARE @TEMP_NAME VARCHAR(50)
 BEGIN TRY
-    TSQL 쿼리
+    SELECT @TEMP_NAME = MEM_NO
+    FROM MEMBER
+    WHERE MEM_NO = 23532
 END TRY
 BEGIN CATCH
-    에러처리
+    PRINT @ERROR
 END CATCH
 ```
 
@@ -150,17 +156,19 @@ FROM TABLE1 AS T1
     JOIN CUST_BUY_LIST AS CBL 	ON T2.CUST_NO = CBL.CUST_NO
 ```
 
-#### a. INNER JOIN 은 INNER를 생략한 JOIN
-#### b. LEFT OUTER JOIN, RIGHT OUTER JOIN  ⇒ LEFT JOIN, RIGHT JOIN, FULL JOIN
-#### c. ON 절은 탭으로 1번
-#### d. JOIN은 1탭 들여쓰기한다.
+* #### a. INNER JOIN 은 INNER를 생략
+* #### b. LEFT OUTER JOIN, RIGHT OUTER JOIN은 OUTER를 생략  ⇒ LEFT JOIN, RIGHT JOIN, FULL JOIN
+* #### c. ON 절은 탭으로 1번
+* #### d. JOIN은 1탭 들여쓰기한다.
+
 ```SQL
     SELECT PROD_NO
     FROM TABLE1 AS T1
         JOIN TABLE2 AS T2		ON T1.TNO = T2.TNO
+        LEFT JOIN TABLE3 AS T3  ON T2.TNAME = T3.TNAME
 ```
 
-#### e.  여러 테이블 조인시 항상 최상위 테이블부터
+* #### e.  여러 테이블 조인시 항상 최상위 테이블부터. 단 성능 이슈발생시 드라이빙 테이블부터
 ```SQL
     SELECT C.NAME
     FROM CUST AS C
@@ -185,18 +193,17 @@ FROM TABLE1 AS T1
 
 
 ## 12. 권장
-### a. 일부 로우만 가져오기
+* #### 12.1 일부 로우만 가져오기
 SELECT의 결과셋을 제한할때 TOP을 사용
 ```SQL
-SELECT TOP 5 PROJECT_NO, PROJECT_NAME
-FROM T_PROJECT
+SELECT TOP 5 PROJECT_NO, PROJECT_NAME        -- 상위 5개만 가져오는다
+FROM T_PROJECT;
 
-
-SELECT TOP 50 PERCENT PROJECT_NO, PROJECT_NAME  -- 결과중 절반만 가져오기
-FROM T_PROJECT
+SELECT TOP 50 PERCENT PROJECT_NO, PROJECT_NAME  -- 결과중 상위 50%만 가져오기
+FROM T_PROJECT;
 ```
 
-#### b. 서브쿼리
+* #### 12.2 서브쿼리
 ```SQL
 SELECT MEMBER_NO, MEMBER_ID
 FROM TB_MEMBER
@@ -216,16 +223,17 @@ FROM TB_MEMBER M
 WHERE M.MEMBER_GROUP_CODE NOT IN ('A')
 ```
 
-#### c. @@IDENTITY 사용 금지
+* #### 12.3 @@IDENTITY 사용 금지
 @@IDENTITY 대신 SCOPE_IDENTITY() 사용
 
 
-#### d. NOLOCK 힌트 사용 금지
-Azure SQL Database           : read commited snapshot isolation가 기본  
-Azure SQL Datawarehouse : read uncommited가 default 
+* #### 12.4 NOLOCK 힌트 사용 금지
+    * Azure SQL Database          : read commited snapshot isolation가 기본.
+    *                               오라클과 같은 MVCC라서 NOLOCK의미 없음
+    * Azure SQL Datawarehouse     : read uncommited가 default. nolock과 같은 말
 
 
-- 변수 선언은
+* #### 12.5 변수 파악
 DECLARE @MEM_NAME VARCHAR(500)  = '박성출'       --  변수 선언
 
 데이터 존재 파악
