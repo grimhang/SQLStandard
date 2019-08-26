@@ -157,6 +157,7 @@ WHERE ADDRESS_ID = 297;
 ```
 * #### a. DELETE와 WHERE 구문은 다른줄에
 
+
 ## 10. 에러처리
 * GOTO 논리를 사용하지 않는다
 
