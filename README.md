@@ -13,7 +13,6 @@
   다음과 같이 임시 조치 가능  
     > 메뉴 / 쿼리 / 쿼리 옵션 창에서 영문으로 자판을 바꾸면 그 다음부터는 영문자판이 기본값으로 된다.  
 
-
 ## 1. 기본규칙
 * a. 들여쓰기 크기는 4이며 공백4개 기본으로 한다.
 * b. 괄호로 AND 와 OR는 명시적으로 지정
@@ -283,7 +282,8 @@ FROM TABLE1 AS T1
  * #### 12.7 VARCHAR와 NVARCHAR 사이 조인 금지
    VARCHAR쪽 테이블의 모든 로우를 NVARCHAR로 먼저 암시적으로 변환 한다음 조인을 하기 때문에  
    엄청난 성능 저하가 발생  
-    > JAVA쪽은 이와 관련되어 기본적으로 쿼리가 UNICODE로 입력되기에 VARCHAR로 테이블을
-    > 만들었을 경우 암시적 변환때문에 성능 저하 발생.  MyBatis가 N'apple' 이렇게 데이터를 보냄
-    > 이에 대한 예방책으로 JDBC 드라이버의 sendStringParametersAsUnicode 값을 false로 하는 방법도 존재
-    > 문제 설명 참고 : https://dream6.tistory.com/entry/인덱스를-이용-못하는-경우자바-유니코드-문제?category=582795
+    > JAVA쪽은 이와 관련되어 기본적으로 쿼리가 UNICODE로 입력되기에 VARCHAR로 테이블을  
+    > 만들었을 경우 암시적 변환때문에 성능 저하 발생.  MyBatis가 N'apple' 이렇게 데이터를 보냄  
+    > 이에 대한 예방책으로 JDBC 드라이버의 sendStringParametersAsUnicode 값을 false로 하는 방법도 존재  
+    > 문제 설명 참고  
+    >  --> https://dream6.tistory.com/entry/인덱스를-이용-못하는-경우자바-유니코드-문제?category=582795
