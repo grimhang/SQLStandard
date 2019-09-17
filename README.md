@@ -6,7 +6,7 @@
   노트북을 지급받을 때 자동으로 깔려있다.  
   만약 설치가 안되어 있을 경우 파일서버의 다음 위치에서 설치본을 찾을수 있다.  
     파일서버\설치파일\SSMS_Setup_KOR.exe
-> 최신 버전은 18.2이지만 안정성이 떨어져 설치하지 않음. 현재 설치 버전은 17.9  
+> 최신 버전은 19.2이지만 안정성이 떨어져 설치하지 않음. 현재 설치 버전은 17.9  
 * #### 1.1 한글 전환 문제
   sql을 작성중 다른 화면으로 이동했다 돌아오면 한글 상태로 자판이 자동 변경되는 문제가 있다.  
   15년 넘은 버그로 해결이 안되고 있다.  
@@ -33,11 +33,41 @@
 * b. 별칭은 단어들의 첫째 글자로  
    예) PRODUCT_BUY_CUSTOMER  ⇒ PBC
 
-## 5. 주석
-* #### 5.1 한줄 주석
+## 5. DB Object 명명 규칙
+* #### a. 테이블
+* #### b. PK ==> PK_테이블명   
+    > 예)  PK_OKRB_CTRT
+
+* #### c. FK : FK_테이블명   
+    > 예)  FK_OKRB_CTRT
+
+* #### d. 인덱스 : IX_테이블명_일련번호  
+    > 예) IX_OKRB_CTRT_01
+
+* #### e. 뷰 : VW_기준테이블명_일련번호  
+    > 예) VW_OKRB_CTRT_01
+* #### f. 저장 프로시저 : P_의미있는이름_일련번호  
+    > 예) P_OKRB_CTRT_BATCH_01
+
+* #### g. 함수 : FN_의미있는이름_01  
+    > 예) FN_OKRB_CTRT_GET_NAME_01
+
+* #### h. 트리거 : TR_테이블명_01
+    > 예) TR_OKRB_CTRT_01
+
+* #### i. 파티션 : P_테이블명_파티션키
+    > 예) P_OKRB_CTRT__PLCY_NO    
+
+* #### j. 시노님 : 테이블명과 동일
+
+* #### k. 시퀀스 : SQ_테이블명
+    > 예) SQ_OKRB_CTRT
+
+## 6. 주석
+* #### 6.1 한줄 주석
   대시 두번이면 같은 줄의 이후의 내용은 주석처리됨
 
-* #### 5.2 복수줄 주석
+* #### 6.2 복수줄 주석
   대량의 내용을 주석으로 하고 싶을때
 ```sql
     /**************************************************************
@@ -52,7 +82,7 @@
     **************************************************************/
 ```
 
-## 6. SELECT
+## 7. SELECT
 기본 스타일은 다음과 같습니다.
 ```sql
 SELECT MEMBER_NO, MEMBER_ID, MEMBER_NAME, BASIC_SYSTEM_NO, CREATE_DTM
@@ -63,7 +93,7 @@ WHERE MEMBER_GROUP_CODE = 'A'
   SELECT, FROM, WHERE 절은 다음줄에 배치     
   SELECT절에 한줄의 컬럼 갯수는 5개까지만 하고 6개부터 줄바꿈  
 
-* #### 6.1 SELECT 절의 사용자 정의 함수
+* #### 7.1 SELECT 절의 사용자 정의 함수
     * SELECT에는 가급적 사용자 정의 함수를 사용하지 않는다. 성능 이슈 존재.  
     * 해당 로직을 함수 밖으로 꺼낸다.  
 ```sql
@@ -78,7 +108,7 @@ WHERE MEMBER_GROUP_CODE = 'A'
     WHERE MEMBER_GROUP_CODE = 'A'
 ```
 
-* #### 6.2  컬럼과 컬럼사이의 콤마 규칙 
+* #### 7.2  컬럼과 컬럼사이의 콤마 규칙 
 ```sql   
     -- 한줄일때
     SELECT PROD_NO, CUST_NAME
@@ -88,10 +118,10 @@ WHERE MEMBER_GROUP_CODE = 'A'
         , CUST_NAME
 ```
 
-* #### 6.3 SELECT, FROM, WHERE, GROUP BY 는 각각 다른 줄에  
+* #### 7.3 SELECT, FROM, WHERE, GROUP BY 는 각각 다른 줄에  
 
 
-* #### 6.4 WHERE 조건은 다른줄에
+* #### 7.4 WHERE 조건은 다른줄에
 ```sql    
     SELECT *
     FROM TABLE1
@@ -100,12 +130,12 @@ WHERE MEMBER_GROUP_CODE = 'A'
         AND REGION = ‘서울’
 ```
 
-* #### 6.6 SELECT 구문의 가로길이는 컬럼 5개  
+* #### 7.6 SELECT 구문의 가로길이는 컬럼 5개  
 ```sql
     SELECT PROD_NO, CUST_NAME, CUST_NO, CUST_ADDR, CUST_TELNO
         , CUST_ALIAS_NAME
 ```        
-* #### 6.7 변수에 값 할당
+* #### 7.7 변수에 값 할당
   SET을 이용해 변수에 값 할당. 단 테이블에서 데이터를 읽어와 값을 변수에 할당할 경우는 SELECT
 
 ```sql
@@ -125,7 +155,7 @@ WHERE MEMBER_GROUP_CODE = 'A'
 ```       
 
 
-## 7. UPDATE
+## 8. UPDATE
 기본 스타일은 다음과 같습니다.
 
 ```SQL
@@ -140,7 +170,7 @@ WHERE MEMBER_NO = 5
 * #### b. SET절과 WHERE절에서 컬럼들 다른줄에 배치
 
 
-## 8. INSERT
+## 9. INSERT
     컬럼 리스트를 항상 명시
 ```SQL    
 -- 나쁜 예
@@ -150,7 +180,7 @@ INSERT INTO TABLE1 VALUES (1, getdate());
 INSERT INTO TABLE1 (NO, TODAY_DATE) VALUES (1, getdate());
 ```
 
-## 9. DELETE
+## 10. DELETE
 기본 스타일은 다음과 같습니다.
 ```SQL
 DELETE ADDRESS
@@ -159,7 +189,7 @@ WHERE ADDRESS_ID = 297;
 * #### a. DELETE와 WHERE 구문은 다른줄에
 
 
-## 10. 에러처리
+## 11. 에러처리
 * GOTO 논리를 사용하지 않는다
 
 * null값 비교는 무조건 IS NULL 또는 IS NOT NULL 
@@ -177,7 +207,7 @@ BEGIN CATCH
 END CATCH
 ```
 
-## 11. 조인
+## 12. 조인
 조인은 ANSI 조인을 사용
 ```SQL
 SELECT PROD_NO
@@ -204,7 +234,7 @@ FROM TABLE1 AS T1
         JOIN CUST_BUY_LIST AS CBL	ON 
 ```
 
-## 12. 피해야 할 점
+## 13. 피해야 할 점
 텍스트 형태의 데이터 타입 CHAR, NCHAR, VARCHAR, NVARCHAR 에는 항상 크기를 지정
 ```SQL
 /* 권장 */
@@ -221,8 +251,8 @@ FROM TABLE1 AS T1
 ```
 
 
-## 13. 권장
-* #### 13.1 TOP으로 결과 제한
+## 14. 권장
+* #### 14.1 TOP으로 결과 제한
   SELECT의 결과셋을 제한할때 TOP을 사용  
 ```SQL
     SELECT TOP 5 PROJECT_NO, PROJECT_NAME        -- 상위 5개만 가져오는다
@@ -232,7 +262,7 @@ FROM TABLE1 AS T1
     FROM T_PROJECT;
 ```
 
-* #### 13.2 서브쿼리
+* #### 14.2 서브쿼리
 ```SQL
     SELECT MEMBER_NO, MEMBER_ID
     FROM TB_MEMBER
@@ -252,10 +282,10 @@ FROM TABLE1 AS T1
     WHERE M.MEMBER_GROUP_CODE NOT IN ('A')
 ```
 
-* #### 13.3 @@IDENTITY 사용 금지
+* #### 14.3 @@IDENTITY 사용 금지
   Azure DW는 시퀀스가 지원 안됨. identity를 써야 하는데 @@IDENTITY 대신 SCOPE_IDENTITY() 사용  
 
-* #### 13.4 NOLOCK 힌트 사용 금지
+* #### 14.4 NOLOCK 힌트 사용 금지
     * Azure SQL Database          
         * read commited snapshot isolation가 기본.
         * 오라클과 같은 MVCC라서 NOLOCK의미 없음
@@ -264,7 +294,7 @@ FROM TABLE1 AS T1
         * read uncommited가 기본값. nolock과 같은 말
 
 
-* #### 13.5 데이터 존재 파악
+* #### 14.5 데이터 존재 파악
   데이터 존재 여부 파악을 위해 COUNT(*) 또는 SELECT * FROM 을 사용하는 대신 EXSITS/TOP 구문 사용.  
   또한 IN, NOT IN 대신에 가능하면 EXISTS, NOT EXISTS를 사용
 ```sql
@@ -278,7 +308,7 @@ FROM TABLE1 AS T1
     IF (SELECT COUNT(*) FROM DBO.TB_CUSTID WHERE CUSTNAME LIKE ‘박%’)) -- 전체 ROW 를 모두 COUNT
  ```
 
- * #### 13.6 페이징은 OFFSET FETCH 를 사용
+ * #### 14.6 페이징은 OFFSET FETCH 를 사용
  ```sql
     SELECT PRODUCT_NAME, LIST_PRICE 
     FROM PRODUCT
@@ -287,7 +317,7 @@ FROM TABLE1 AS T1
     FETCH NEXT 10 ROWS ONLY;
  ```
 
- * #### 13.7 VARCHAR와 NVARCHAR 사이 조인 금지
+ * #### 14.7 VARCHAR와 NVARCHAR 사이 조인 금지
    VARCHAR쪽 테이블의 모든 로우를 NVARCHAR로 먼저 암시적으로 변환 한다음 조인을 하기 때문에  
    엄청난 성능 저하가 발생  
     > JAVA쪽은 이와 관련되어 기본적으로 쿼리가 UNICODE로 입력되기에 VARCHAR로 테이블을  
