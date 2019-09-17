@@ -36,32 +36,32 @@
 ## 5. DB Object 명명 규칙
 * #### a. 테이블
 * #### b. PK ==> PK_테이블명   
-    > 예)  PK_OKRB_CTRT
+  예)  PK_OKRB_CTRT
 
 * #### c. FK : FK_테이블명   
-    > 예)  FK_OKRB_CTRT
+  예)  FK_OKRB_CTRT
 
 * #### d. 인덱스 : IX_테이블명_일련번호  
-    > 예) IX_OKRB_CTRT_01
+  예) IX_OKRB_CTRT_01
 
 * #### e. 뷰 : VW_기준테이블명_일련번호  
-    > 예) VW_OKRB_CTRT_01
+  예) VW_OKRB_CTRT_01
 * #### f. 저장 프로시저 : P_의미있는이름_일련번호  
-    > 예) P_OKRB_CTRT_BATCH_01
+  예) P_OKRB_CTRT_BATCH_01
 
 * #### g. 함수 : FN_의미있는이름_01  
-    > 예) FN_OKRB_CTRT_GET_NAME_01
+  예) FN_OKRB_CTRT_GET_NAME_01
 
 * #### h. 트리거 : TR_테이블명_01
-    > 예) TR_OKRB_CTRT_01
+  예) TR_OKRB_CTRT_01
 
 * #### i. 파티션 : P_테이블명_파티션키
-    > 예) P_OKRB_CTRT__PLCY_NO    
+  예) P_OKRB_CTRT__PLCY_NO    
 
 * #### j. 시노님 : 테이블명과 동일
 
 * #### k. 시퀀스 : SQ_테이블명
-    > 예) SQ_OKRB_CTRT
+  예) SQ_OKRB_CTRT
 
 ## 6. 주석
 * #### 6.1 한줄 주석
